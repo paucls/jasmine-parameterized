@@ -1,2 +1,6 @@
 lib/
 dist/spec/
+img/
+spec/
+.idea
+.travis.yml

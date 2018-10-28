@@ -1,6 +1,6 @@
 {
   "name": "jasmine-parameterized",
-  "version": "0.1.2",
+  "version": "0.2.1",
   "description": "Parameterized unit tests for Jasmine",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
