@@ -1,12 +1,16 @@
 Jasmine-Parameterized
 =====================
 
+[![Build Status](https://travis-ci.org/paucls/jasmine-parameterized.svg)](https://travis-ci.org/paucls/jasmine-parameterized)
+
 Parameterized unit tests for Jasmine.
 
 ## Examples
 
 ### Single param per case
-```
+``` ts
+import { cases } from 'jasmine-parameterized';
+
 describe('Customer', () => {
 
     cases([
@@ -22,7 +26,7 @@ describe('Customer', () => {
 ![Single param per case](img/example1.png)
 
 ### Multiple params per case
-```
+``` ts
 describe('Fibonacci Sequence', () => {
 
     describe('First two numbers', () => {
