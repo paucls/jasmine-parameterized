@@ -1,6 +1,6 @@
 export function cases(parameters: any[]): BddDsl {
     return {
-        it: function (description: string, code: (param: any) => void, timeout?: number) {
+        it: function (description: string = '', code: (param: any) => void, timeout?: number) {
             parameters.forEach((parameter, idx) => {
                 it(`${description} [${idx}]`,
                     () => { code(parameter); },
