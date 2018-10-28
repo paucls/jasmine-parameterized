@@ -1,11 +1,17 @@
-export function cases(parameters: any[]): object {
+export function cases(parameters: any[]): BddDsl {
     return {
-        it: function (testName: string, testFunc: (param: any) => void) {
+        it: function (description: string, code: (param: any) => void, timeout?: number) {
             parameters.forEach((parameter, idx) => {
-                it(`${testName} [${idx}]`, () => {
-                    testFunc(parameter);
-                });
+                it(`${description} [${idx}]`,
+                    () => { code(parameter); },
+                    timeout);
             });
-        }
+        },
+        xit
     };
+}
+
+interface BddDsl {
+    it: (description: string, code: (param: any) => void, timeout?: number) => void;
+    xit: (description: string, code: (param: any) => void, timeout?: number) => void;
 }
