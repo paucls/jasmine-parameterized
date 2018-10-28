@@ -1,11 +1,7 @@
 {
   "name": "jasmine-parameterized",
   "version": "0.1.0",
-<<<<<<< HEAD
   "description": "Parameterized unit tests for Jasmine",
-=======
-  "description": "Parameterised unit tests for Jasmine",
->>>>>>> b4891dd... Adding build script
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
