@@ -1,0 +1,28 @@
+{
+  "name": "jasmine-parameterized",
+  "version": "0.1.0",
+  "description": "Parameterized unit tests for Jasmine",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paucls/jasmine-parameterized.git"
+  },
+  "keywords": [
+    "parameterised",
+    "unit",
+    "test"
+  ],
+  "author": "Paulo Clavijo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/paucls/jasmine-parameterized/issues"
+  },
+  "homepage": "https://github.com/paucls/jasmine-parameterized#readme",
+  "devDependencies": {
+    "typescript": "^3.1.3"
+  }
+}
