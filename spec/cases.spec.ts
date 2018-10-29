@@ -1,4 +1,5 @@
-import { cases, printCase, buildDescription } from '../lib';
+import { cases } from '../lib';
+import { buildDescription, printCase } from '../lib/cases';
 
 describe('Cases', () => {
 
