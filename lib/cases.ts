@@ -25,10 +25,14 @@ export function cases(parameters: any[]): BddDsl {
 
 /** @internal */
 export function buildDescription(idx: number, parameter: any, description: string): string {
-    if (typeof parameter === 'object') {
+    if (isComplexObject(parameter)) {
         return `${description} [${idx}]`;
     }
     return `${description} (${parameter}) [${idx}]`;
+}
+
+function isComplexObject(parameter: any) {
+    return typeof parameter === 'object' && !Array.isArray(parameter);
 }
 
 /** @internal */

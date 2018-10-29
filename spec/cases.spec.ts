@@ -22,31 +22,39 @@ describe('Cases', () => {
 
     describe('buildDescription()', () => {
 
-        it('should include description and case index', () => {
-            let parameter = 'a parameter';
-            let description = 'a spec description';
+        const aDescription = 'a spec description';
 
-            const result = buildDescription(3, parameter, description);
+        it('should include original description and case index', () => {
+            const caseIndex = 3;
 
-            expect(result).toContain(description);
+            const result = buildDescription(caseIndex, 'a parameter', aDescription);
+
+            expect(result).toContain(aDescription);
             expect(result).toContain(' [3]');
         });
 
-        it('should include the case param if it is a single primitive value', () => {
-            let parameter = 'a parameter';
+        it('should include param when it is a primitive value', () => {
+            const parameter = 'foo';
 
-            const result = buildDescription(3, parameter, '');
+            const result = buildDescription(0, parameter, aDescription);
 
-            expect(result).toContain('(a parameter)');
+            expect(result).toContain(' (foo)');
         });
 
-        it('should not include the case param if it is an object with multiple values', () => {
-            let parameter = {x: 0, y: 1};
-            let description = 'a spec description';
+        it('should include param when it is an array of values', () => {
+            const parameter = [4, 'IV'];
 
-            const result = buildDescription(3, parameter, description);
+            const result = buildDescription(0, parameter, aDescription);
 
-            expect(result).toEqual('a spec description [3]');
+            expect(result).toContain(' (4,IV)');
+        });
+
+        it('should not include param when it is an object', () => {
+            const parameter = {x: 0, y: 1};
+
+            const result = buildDescription(0, parameter, aDescription);
+
+            expect(result).toEqual('a spec description [0]');
         });
 
     });
