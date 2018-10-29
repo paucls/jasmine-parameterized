@@ -5,9 +5,17 @@ Jasmine-Parameterized
 
 Parameterized unit tests for Jasmine.
 
+## Installation
+```
+npm install jasmine-parameterized
+```
+
+## Usage
+This library provides a convenient `cases` function to easily parameterized the execution of `it` spec functions.
+
 ## Examples
 
-### Single param per case
+### Single parameter
 ``` ts
 import { cases } from 'jasmine-parameterized';
 
@@ -23,9 +31,31 @@ describe('Customer', () => {
     });
 ...
 ```
-![Single param per case](img/example1.png)
+![single param](img/single_param.png)
 
-### Multiple params per case
+### Multiple parameters
+``` ts
+describe('Roman Numeral Converter', () => {
+
+    cases([
+        [1, 'I'],
+        [2, 'II'],
+        [3, 'III'],
+        [4, 'IV'],
+        [5, 'V'],
+        [6, 'VI']
+    ])
+    .it('converts Arabic number to its equivalent Roman numeral', ([arabic, roman]) => {
+        expect(romanFor(arabic)).toBe(roman);
+    });
+
+});
+```
+![multiple params](img/multiple_params.png)
+
+### Multiple named parameters
+For complex cases or when we want to be more explicit.
+
 ``` ts
 describe('Fibonacci Sequence', () => {
 
@@ -52,5 +82,4 @@ describe('Fibonacci Sequence', () => {
 
 });
 ```
-
-![Multiple params per case](img/example2.png)
+![multiple named params](img/multiple_named_params.png)

@@ -3,6 +3,10 @@ interface BddDsl {
     xit: (description: string, code: (param: any) => void, timeout?: number) => void;
 }
 
+/**
+ * Convenient function to easily parameterized the execution of a `it` spec function.
+ * @param parameters An array of single or multiple value parameters. Example: ['foo', 'bar']
+ */
 export function cases(parameters: any[]): BddDsl {
     return {
         it: function (description: string = '', code: (param: any) => void, timeout?: number) {
