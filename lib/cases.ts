@@ -11,9 +11,10 @@ export function cases(parameters: any[]): BddDsl {
     return {
         it: function (description: string = '', code: (param: any) => void, timeout?: number) {
             parameters.forEach((parameter, idx) => {
-                it(buildDescription(idx, parameter, description),
+                const aCase = new Case(idx, parameter, description);
+                it(aCase.buildDescription(),
                     () => {
-                        printCase(idx, parameter);
+                        aCase.printCase();
                         code(parameter);
                     },
                     timeout);
@@ -24,18 +25,23 @@ export function cases(parameters: any[]): BddDsl {
 }
 
 /** @internal */
-export function buildDescription(idx: number, parameter: any, description: string): string {
-    if (isComplexObject(parameter)) {
-        return `${description} [${idx}]`;
+export class Case {
+    constructor(private index: number,
+                private parameter: any,
+                private description: string) {}
+
+    buildDescription(): string {
+        if (isComplexObject(this.parameter)) {
+            return `${this.description} [${this.index}]`;
+        }
+        return `${this.description} (${this.parameter}) [${this.index}]`;
     }
-    return `${description} (${parameter}) [${idx}]`;
+
+    printCase() {
+        console.log(`Case #${this.index} -- Parameters:`, this.parameter);
+    }
 }
 
 function isComplexObject(parameter: any) {
     return typeof parameter === 'object' && !Array.isArray(parameter);
-}
-
-/** @internal */
-export function printCase(idx: number, parameter: any) {
-    console.log(`Case #${idx} -- Parameters:`, parameter);
 }
