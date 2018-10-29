@@ -16,7 +16,7 @@ describe('Customer', () => {
         15,
         18
     ])
-    .it('should not be an child in other cases', (age) => {
+    .it('should not be a child in other cases', (age) => {
         const customer = new Customer(age);
         expect(customer.isChild()).toBe(false);
     });
