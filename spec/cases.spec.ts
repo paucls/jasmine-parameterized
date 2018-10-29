@@ -57,7 +57,7 @@ describe('Cases', () => {
 
             printCase(3, parameter);
 
-            expect(console.log).toHaveBeenCalledWith('Case [3]', parameter)
+            expect(console.log).toHaveBeenCalledWith('Case #3 -- Parameters:', parameter)
         });
 
     });

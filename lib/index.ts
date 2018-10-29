@@ -27,5 +27,5 @@ export function buildDescription(idx: number, parameter: any, description: strin
 }
 
 export function printCase(idx: number, parameter: any) {
-    console.log(`Case [${idx}]`, parameter);
+    console.log(`Case #${idx} -- Parameters:`, parameter);
 }
