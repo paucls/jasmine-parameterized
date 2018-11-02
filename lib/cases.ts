@@ -14,7 +14,7 @@ export function cases(parameters: any[]): BddDsl {
                 const aCase = new Case(idx, parameter, description);
                 it(aCase.buildDescription(),
                     () => {
-                        aCase.printCase();
+                        aCase.logCase();
                         code(parameter);
                     },
                     timeout);
@@ -31,17 +31,19 @@ export class Case {
                 private description: string) {}
 
     buildDescription(): string {
-        if (isComplexObject(this.parameter)) {
+        if (this.hasComplexParameter()) {
             return `${this.description} [${this.index}]`;
         }
         return `${this.description} (${this.parameter}) [${this.index}]`;
     }
 
-    printCase() {
-        console.log(`Case #${this.index} -- Parameters:`, this.parameter);
+    logCase() {
+        if (this.hasComplexParameter()) {
+            console.log(`Case #${this.index} -- Parameters:`, this.parameter);
+        }
     }
-}
 
-function isComplexObject(parameter: any) {
-    return typeof parameter === 'object' && !Array.isArray(parameter);
+    private hasComplexParameter() {
+        return typeof this.parameter === 'object' && !Array.isArray(this.parameter);
+    }
 }

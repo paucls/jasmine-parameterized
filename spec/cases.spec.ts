@@ -67,15 +67,24 @@ describe('Case', () => {
 
     });
 
-    describe('printCase()', () => {
+    describe('logCase()', () => {
 
-        it('should print on the console the given case details', () => {
+        it('should log case details when param is a complex object', () => {
+            let parameter = {x: 0, y: 1};
+
+            let aCase = new Case(3, parameter, 'description');
+            aCase.logCase();
+
+            expect(console.log).toHaveBeenCalledWith('Case #3 -- Parameters:', parameter)
+        });
+
+        it('should not log case details when param is a primitive or an array', () => {
             let parameter = 'a parameter';
 
             let aCase = new Case(3, parameter, 'description');
-            aCase.printCase();
+            aCase.logCase();
 
-            expect(console.log).toHaveBeenCalledWith('Case #3 -- Parameters:', parameter)
+            expect(console.log).not.toHaveBeenCalled()
         });
 
     });
