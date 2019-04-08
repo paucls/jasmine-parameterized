@@ -15,7 +15,7 @@ export function cases(parameters: any[]): BddDsl {
                 it(aCase.buildDescription(),
                     () => {
                         aCase.logCase();
-                        code(parameter);
+                        return code(parameter);
                     },
                     timeout);
             });
