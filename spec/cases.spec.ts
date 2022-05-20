@@ -78,6 +78,15 @@ describe('Case', () => {
             expect(console.log).toHaveBeenCalledWith('Case #3 -- Parameters:', parameter)
         });
 
+        it('should not log case details when param is an empty object', () => {
+            let parameter = {};
+
+            let aCase = new Case(3, parameter, 'description');
+            aCase.logCase();
+
+            expect(console.log).not.toHaveBeenCalled()
+        });
+
         it('should not log case details when param is a primitive or an array', () => {
             let parameter = 'a parameter';
 

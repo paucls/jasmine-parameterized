@@ -44,6 +44,15 @@ export class Case {
     }
 
     private hasComplexParameter() {
-        return typeof this.parameter === 'object' && !Array.isArray(this.parameter);
+        return this.paramIsANonEmptyObject() && !this.paramIsArray();
+    }
+
+    private paramIsANonEmptyObject() {
+        return typeof this.parameter === 'object'
+            && Object.keys(this.parameter).length > 0;
+    }
+
+    private paramIsArray() {
+        return Array.isArray(this.parameter);
     }
 }
