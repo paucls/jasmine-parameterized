@@ -13,10 +13,7 @@ export function cases(parameters: any[]): BddDsl {
             parameters.forEach((parameter, idx) => {
                 const aCase = new Case(idx, parameter, description);
                 it(aCase.buildDescription(),
-                    () => {
-                        aCase.logCase();
-                        return code(parameter);
-                    },
+                    () => code(parameter),
                     timeout);
             });
         },
@@ -37,18 +34,13 @@ export class Case {
         return `${this.description} (${this.parameter}) [${this.index}]`;
     }
 
-    logCase() {
-        if (this.hasComplexParameter()) {
-            console.log(`Case #${this.index} -- Parameters:`, this.parameter);
-        }
-    }
-
     private hasComplexParameter() {
         return this.paramIsANonEmptyObject() && !this.paramIsArray();
     }
 
     private paramIsANonEmptyObject() {
         return typeof this.parameter === 'object'
+            && this.parameter !== null
             && Object.keys(this.parameter).length > 0;
     }
 
