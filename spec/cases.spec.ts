@@ -56,6 +56,24 @@ describe('Case', () => {
             expect(result).toContain(' (4,IV)');
         });
 
+        it('should include param when it is null', () => {
+            const parameter = null;
+            const aCase = new Case(0, parameter, aDescription);
+
+            const result = aCase.buildDescription();
+
+            expect(result).toContain(' (null)');
+        });
+
+        it('should include param when it is undefined', () => {
+            const parameter = undefined;
+            const aCase = new Case(0, parameter, aDescription);
+
+            const result = aCase.buildDescription();
+
+            expect(result).toContain(' (undefined)');
+        });
+
         it('should not include param when it is an object', () => {
             const parameter = {x: 0, y: 1};
             const aCase = new Case(0, parameter, aDescription);
@@ -63,37 +81,6 @@ describe('Case', () => {
             const result = aCase.buildDescription();
 
             expect(result).toEqual('a spec description [0]');
-        });
-
-    });
-
-    describe('logCase()', () => {
-
-        it('should log case details when param is a complex object', () => {
-            let parameter = {x: 0, y: 1};
-
-            let aCase = new Case(3, parameter, 'description');
-            aCase.logCase();
-
-            expect(console.log).toHaveBeenCalledWith('Case #3 -- Parameters:', parameter)
-        });
-
-        it('should not log case details when param is an empty object', () => {
-            let parameter = {};
-
-            let aCase = new Case(3, parameter, 'description');
-            aCase.logCase();
-
-            expect(console.log).not.toHaveBeenCalled()
-        });
-
-        it('should not log case details when param is a primitive or an array', () => {
-            let parameter = 'a parameter';
-
-            let aCase = new Case(3, parameter, 'description');
-            aCase.logCase();
-
-            expect(console.log).not.toHaveBeenCalled()
         });
 
     });

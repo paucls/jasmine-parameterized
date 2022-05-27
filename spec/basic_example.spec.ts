@@ -14,7 +14,10 @@ describe('Customer', () => {
     cases([
         3,
         15,
-        18
+        18,
+        null,
+        undefined,
+        {}
     ])
     .it('should not be a child in other cases', (age) => {
         const customer = new Customer(age);
